@@ -28,7 +28,7 @@ If you find a bug or something not working right, **please** [submit an issue](h
 
 <html>
 <head>
-<script src="https://starsign68.github.io/ezsyntax/user/script.js"></script>
+<script src="https://ezsyntax.willm.xyz/user/script.js"></script><script>
 <script>
 class codeEscape extends HTMLElement {
     constructor() {
