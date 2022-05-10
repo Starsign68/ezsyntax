@@ -349,3 +349,24 @@ function syntax(element, mode = "html", palette = { tagClr: "mediumblue", tagNam
         }
     }
 }
+
+class codeEscape extends HTMLElement {
+    constructor() {
+        super();
+
+        const escapeHTML = (str) =>
+            str.replace(/[&<>'"]/g, (tag) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+        const shadow = this.attachShadow({ mode: 'closed' });
+        this.style.whiteSpace = "pre";
+        const res = `${escapeHTML(this.outerHTML)}`;
+        var text = document.createElement('code');
+        text.innerHTML = res;
+        shadow.appendChild(text);
+        setTimeout(function () {
+            const cElms = document.getElementsByTagName("code-escape");
+            [...cElms].map(element => syntax(element, "html"));
+        }, 10)
+    }
+}
+
+customElements.define('code-escape', codeEscape);
